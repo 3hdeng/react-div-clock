@@ -1,0 +1,43 @@
+{
+  "name": "ract-div-clock",
+  "version": "0.0.1",
+  "description": "react clock based on div styles",
+  "scripts": {
+    "babel": "babel *.jsx -d dist",
+    "wpk": "webpack",
+    "dev": "webpack-dev-server --progress --colors --port 8080"
+  },
+  "keywords": [
+    "React",
+    "div",
+    "clock"
+  ],
+  "author": {
+    "email": "3hdeng@gmail.com",
+    "name": "3h deng"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/3hdeng/react-div-clock",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.8.0",
+    "babel-core": "^6.8.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.3.0",
+    "babel-preset-react": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "react": "^15.0.2",
+    "react-css-modules": "^3.7.6",
+    "react-dom": "^15.0.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9"
+  },
+  "peerDependencies": {
+    "react": ">=15",
+    "react-dom": ">=15"
+  },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=2"
+  }
+}
