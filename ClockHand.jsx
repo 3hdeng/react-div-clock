@@ -16,7 +16,7 @@ const ClockHand = React.createClass({
       angle: 0,
       width: 4,
       height: 100,
-      pstyle: {}
+      style: {}
     }
   },
   render() {
