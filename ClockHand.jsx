@@ -1,7 +1,10 @@
 'use strict'
 
-import React, {PropTypes as types} from 'react'
-//import classnames from 'classnames'
+import React, {
+  PropTypes as types
+}
+from 'react'
+  //import classnames from 'classnames'
 
 
 const ClockHand = React.createClass({
@@ -9,9 +12,9 @@ const ClockHand = React.createClass({
     angle: types.number,
     width: types.number,
     height: types.number,
-    style:types.object
+    style: types.object
   },
-  getDefaultProps () {
+  getDefaultProps() {
     return {
       angle: 0,
       width: 4,
@@ -22,17 +25,25 @@ const ClockHand = React.createClass({
   render() {
     const props = this.props;
 
-    let pstyle ={};
-     if(props.style) pstyle=props.style;
-    
-    let  angle = props.angle,
+    let pstyle = {};
+    if (props.style) pstyle = props.style;
+
+    let angle = props.angle,
       height = props.height,
       width = props.width;
 
-let ostyle={ transformOrigin: 'bottom', position:'absolute', transform: `rotate(${angle}deg)`, 
-width: `${width}px`, height: `${height}px`};
-// <div style={ {width: `${width}px`, height: `${height}px` }}  ></div>
-return( <div style={ Object.assign(pstyle, ostyle ) } ></div>);
+    let ostyle = {
+      transformOrigin: 'bottom',
+      position: 'absolute',
+      transform: `rotate(${angle}deg)`,
+      width: `${width}px`,
+      height: `${height}px`,
+      borderRadius: '10px',
+      border: '1px',
+      borderColor: 'white'
+    };
+    // <div style={ {width: `${width}px`, height: `${height}px` }}  ></div>
+    return (<div style={ Object.assign(pstyle, ostyle ) } ></div>);
   }
 })
 
