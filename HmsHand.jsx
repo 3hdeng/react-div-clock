@@ -61,7 +61,7 @@ class HmsHand extends React.Component {
       pstyle = istyle;
     }
     if (!pstyle.left) pstyle.left = (pstyle.cw - w) / 2;
-    if (!pstyle.bottom) pstyle.bottom = pstyle.ch / 2;
+    if (!pstyle.bottom) pstyle.bottom =  pstyle.ch / 2;
 
     pstyle.w = w;
     pstyle.h = h;

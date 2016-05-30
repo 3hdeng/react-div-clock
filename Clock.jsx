@@ -1,17 +1,24 @@
 import React, {
-  PropTypes as types
+  PropTypes
 }
-from 'react'
-import ClockHand from './ClockHand'
+from 'react';
+import ReactDOM from 'react-dom';
+
+//import ClockHand from './ClockHand'
 import HmsHand from './HmsHand'
 
-class HmsHand extends React.Component {
+class Clock extends React.Component {
   //=== ES6 class , 
   //=== instead of providing a separate getInitialState method, 
   //=== set up your own state property in the constructor.
 
   constructor(props) {
-    super(props);
+    //===
+    Clock.propTypes = {
+      cw: PropTypes.number,
+      ch: PropTypes.number,
+      style: PropTypes.object
+    };
     //=== props
     Clock.defaultProps = {
       cw: 350,
@@ -23,6 +30,7 @@ class HmsHand extends React.Component {
           s: 'red'
         },
         backgroundColor: 'white',
+        position:'absolute',
         hSize: {
           w: 40,
           h: 90
@@ -37,16 +45,21 @@ class HmsHand extends React.Component {
         }
       }
     };
+    // external props will override the defaultProps?
+    super(props);
+    if (!props.style.position) props.style.position = Clock.defaultProps.style.position;
 
-    Clock.propTypes = {
-      cw: types.number,
-      ch: types.number,
-      style: types.object
-    };
+    if (!props.style.hSize) props.style.hSize = Clock.defaultProps.style.hSize;
+    if (!props.style.mSize) props.style.mSize = Clock.defaultProps.style.mSize;
+    if (!props.style.sSize) props.style.sSize = Clock.defaultProps.style.sSize;
+    
+    
+    //console.log(props.style);
+    
     //=== initial state
     this.state = {
       cw: props.cw,
-      ch: prop.ch,
+      ch: props.ch,
       hVal: 0,
       mVal: 0,
       sVal: 0
@@ -55,12 +68,13 @@ class HmsHand extends React.Component {
 
   getStyles() {
     const props = this.props;
-
+  
     let pstyle = {};
     if (props.style) {
       pstyle = props.style;
     }
-
+ 
+ 
     pstyle.cw = props.cw;
     pstyle.ch = props.ch;
 
@@ -73,25 +87,30 @@ class HmsHand extends React.Component {
 
     const divstyle = {
       width: `${pstyle.cw}px`,
-      height: `${pstyle.ch}px`
+      height: `${pstyle.ch}px`,
+      backgroundColor: pstyle.backgroundColor
     };
     const cstyle = {
       cw: pstyle.cw,
-      ch: `${pstyle.ch}`
+      ch: pstyle.ch
     }; //, left: 100, bottom:200}
-    //console.log(cstyle);
+
 
     const hourStyle = Object.assign({
       backgroundColor: pstyle.hmsColor.h
     }, cstyle);
     const minStyle = Object.assign({
-      backgroundColor: `${pstyle.hmsColor.m}`
+      backgroundColor: pstyle.hmsColor.m
     }, cstyle);
     const secStyle = Object.assign({
-      backgroundColor: `${pstyle.hmsColor.s}`
+      backgroundColor: pstyle.hmsColor.s
     }, cstyle);
+
+    //console.log(pstyle.mSize);
+    // console.log(pstyle.sSize);
+     
     const hw = pstyle.hSize.w,
-      hh = pstye.hSize.h;
+      hh = pstyle.hSize.h;
     const mw = pstyle.mSize.w,
       mh = pstyle.mSize.h;
     const sw = pstyle.sSize.w,
@@ -108,44 +127,44 @@ class HmsHand extends React.Component {
 
   //=== animation loop
   componentWillMount() {
-      const th = this
-      th._looping = true
-    },
+    const th = this
+    th._looping = true
+  }
 
-    componentDidMount() {
-      const th = this
+  componentDidMount() {
+    const th = this
 
-      function _loop() {
-        if (!th._looping) {
-          return
-        }
-        let now = new Date()
-        th.setState({
-          hVal: now.getHours(),
-          mVal: now.getMinutes(),
-          sVal: now.getSeconds()
-        })
-        window.requestAnimationFrame(_loop)
+    function _loop() {
+      if (!th._looping) {
+        return
       }
+      let now = new Date()
+      th.setState({
+        hVal: now.getHours(),
+        mVal: now.getMinutes(),
+        sVal: now.getSeconds()
+      })
+      window.requestAnimationFrame(_loop)
+    }
 
-      window.addEventListener('resize', th.resizeClock)
-      _loop()
-      th.resizeClock()
-    },
+    window.addEventListener('resize', th.resizeClock)
+    _loop()
+    th.resizeClock()
+  }
 
-    componentWillUnmount() {
-      const th = this
-      window.removeEventListener('resize', th.resizeClock)
-      th._looping = false
-    },
+  componentWillUnmount() {
+    const th = this
+    window.removeEventListener('resize', th.resizeClock)
+    th._looping = false
+  }
 
 
-    // resize clock when div size changed
+  // resize clock when div size changed
 
-    resizeClock() {
-      const th = this
-      let elm = ReactDOM.findDOMNode(th)
-      let size = numcal.min(elm.offsetWidth, elm.offsetHeight)
+  resizeClock() {
+      const th = this;
+      let elm = ReactDOM.findDOMNode(th);
+      let size = Math.min(elm.offsetWidth, elm.offsetHeight);
       th.setState({
         cw: size,
         ch: size
