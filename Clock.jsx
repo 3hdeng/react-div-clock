@@ -13,24 +13,24 @@ class Clock extends React.Component {
   //=== set up your own state property in the constructor.
 
   constructor(props) {
+   
     //===
     Clock.propTypes = {
       cw: PropTypes.number,
       ch: PropTypes.number,
-      style: PropTypes.object
+      istyle: PropTypes.object
     };
     //=== props
     Clock.defaultProps = {
       cw: 350,
       ch: 350,
-      style: {
+      istyle: {
         hmsColor: {
           h: 'red',
           m: 'cyan',
           s: 'red'
         },
         backgroundColor: 'white',
-        position:'absolute',
         hSize: {
           w: 40,
           h: 90
@@ -47,14 +47,17 @@ class Clock extends React.Component {
     };
     // external props will override the defaultProps?
     super(props);
-    if (!props.style.position) props.style.position = Clock.defaultProps.style.position;
+    if(!props.istyle) props.istyle=Clock.defaultProps.istyle;
+    
+    //if (!props.istyle.position) props.istyle.position = Clock.defaultProps.istyle.position;
+    console.log(props.istyle.hSize);
 
-    if (!props.style.hSize) props.style.hSize = Clock.defaultProps.style.hSize;
-    if (!props.style.mSize) props.style.mSize = Clock.defaultProps.style.mSize;
-    if (!props.style.sSize) props.style.sSize = Clock.defaultProps.style.sSize;
+    if (!props.istyle.hSize) props.istyle.hSize = Clock.defaultProps.istyle.hSize;
+    if (!props.istyle.mSize) props.istyle.mSize = Clock.defaultProps.istyle.mSize;
+    if (!props.istyle.sSize) props.istyle.sSize = Clock.defaultProps.istyle.sSize;
     
     
-    //console.log(props.style);
+    console.log(props.istyle);
     
     //=== initial state
     this.state = {
@@ -70,8 +73,8 @@ class Clock extends React.Component {
     const props = this.props;
   
     let pstyle = {};
-    if (props.style) {
-      pstyle = props.style;
+    if (props.istyle) {
+      pstyle = props.istyle;
     }
  
  
@@ -88,8 +91,11 @@ class Clock extends React.Component {
     const divstyle = {
       width: `${pstyle.cw}px`,
       height: `${pstyle.ch}px`,
-      backgroundColor: pstyle.backgroundColor
+      backgroundColor: pstyle.backgroundColor,
+      display:'block',
+      position:'absolute'
     };
+    
     const cstyle = {
       cw: pstyle.cw,
       ch: pstyle.ch

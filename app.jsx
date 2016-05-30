@@ -6,8 +6,5 @@ import Clock from './Clock';
 //const divstyle={width:`${cw}px`, height:`${ch}px`};
 const cstyle={backgroundColor: 'gray', hmsColor:{h:'blue', m:'green', s:'cyan'}}; 
 
-console.log(cstyle);
-
-
-ReactDOM.render(<Clock cw={400} ch={400} style={cstyle} />,  
+ReactDOM.render(<Clock cw={400} ch={400} istyle={cstyle} />,  
 document.getElementById('mypart'));
