@@ -16,8 +16,8 @@ class Clock extends React.Component {
    
     //===
     Clock.propTypes = {
-      cw: PropTypes.number,
-      ch: PropTypes.number,
+      cw: PropTypes.number.isRequired,
+      ch: PropTypes.number.isRequired,
       istyle: PropTypes.object
     };
     //=== props
@@ -52,9 +52,9 @@ class Clock extends React.Component {
     //if (!props.istyle.position) props.istyle.position = Clock.defaultProps.istyle.position;
     console.log(props.istyle.hSize);
 
-    if (!props.istyle.hSize) props.istyle.hSize = Clock.defaultProps.istyle.hSize;
-    if (!props.istyle.mSize) props.istyle.mSize = Clock.defaultProps.istyle.mSize;
-    if (!props.istyle.sSize) props.istyle.sSize = Clock.defaultProps.istyle.sSize;
+    if (!props.istyle.hSize) props.istyle.hSize = {w:props.cw/20, h:(props.ch/2)*0.65};
+    if (!props.istyle.mSize) props.istyle.mSize = {w:props.cw/30, h:(props.ch/2)*0.75};
+    if (!props.istyle.sSize) props.istyle.sSize = {w:props.cw/40, h:(props.ch/2)*0.85};
     
     
     console.log(props.istyle);
@@ -93,7 +93,8 @@ class Clock extends React.Component {
       height: `${pstyle.ch}px`,
       backgroundColor: pstyle.backgroundColor,
       display:'block',
-      position:'absolute'
+      position:'absolute', 
+      borderRadius:`${pstyle.cw/2}px`
     };
     
     const cstyle = {
