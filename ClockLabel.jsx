@@ -34,7 +34,8 @@ const ClockLabel = React.createClass({
       position: 'absolute',
       transform: `translate(${x}px, ${y}px)`,
       fontSize: `${fontSize}px`,
-      color: 'orange'
+      color: 'orange', 
+      display:'inline-block'
     };
 
     return (
