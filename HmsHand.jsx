@@ -15,15 +15,21 @@ class HmsHand extends React.Component {
       hmsValue: 0,
       width: 4,
       height: 120,
-      style: {}
+      istyle: {
+        cw: 300,
+        ch: 300,
+        left: 150,
+        bottom: 150,
+        backgroundColor: 'red'
+      }
     };
 
-    HmsHand.PropTypes = {
+    HmsHand.propTypes = {
       hmsKind: types.string.isRequired,
       hmsValue: types.number,
       width: types.number,
       height: types.number,
-      style: types.object
+      istyle: types.object
     };
   }
 
@@ -45,23 +51,14 @@ class HmsHand extends React.Component {
     }
 
 
-    let istyle = {
-      cw: 300, //clockwidth
-      ch: 300,
-      left: 150,
-      bottom: 150,
-      backgroundColor: 'red'
-    };
-
 
     let pstyle = {};
-    if (props.style) {
-      pstyle = props.style;
-     }  else {
-      pstyle = istyle;
+    if (props.istyle) {
+      pstyle = props.istyle;
     }
+
     if (!pstyle.left) pstyle.left = (pstyle.cw - w) / 2;
-    if (!pstyle.bottom) pstyle.bottom =  pstyle.ch / 2;
+    if (!pstyle.bottom) pstyle.bottom = pstyle.ch / 2;
 
     pstyle.w = w;
     pstyle.h = h;
@@ -72,7 +69,7 @@ class HmsHand extends React.Component {
   render() {
     let pstyle = this.getStyles();
     console.log(pstyle);
-    return (<ClockHand width={pstyle.w} height={pstyle.h} angle={pstyle.angle} style={pstyle} />);
+    return (<ClockHand width={pstyle.w} height={pstyle.h} angle={pstyle.angle} istyle={pstyle} />);
   }
 
 

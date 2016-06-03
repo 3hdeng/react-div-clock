@@ -4,7 +4,7 @@ import React, {
 from 'react';
 import ReactDOM from 'react-dom';
 
-//import ClockHand from './ClockHand'
+import ClockFace from './ClockFace'
 import HmsHand from './HmsHand'
 
 class Clock extends React.Component {
@@ -125,11 +125,13 @@ class Clock extends React.Component {
 
 
 
-    return (<div style={divstyle}>
-<HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={state.hVal} style={hourStyle} />
-<HmsHand width={mw} height={mh} hmsKind='min' hmsValue={state.mVal} style={minStyle} />
-<HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={state.sVal} style={secStyle} />
+    //return (<ClockFace cw={pstyle.cw} ch={pstyle.ch} istyle={{backgroundColor:'red'}}>
+     return (<div style={divstyle}>
+<HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={state.hVal} istyle={hourStyle} />
+<HmsHand width={mw} height={mh} hmsKind='min' hmsValue={state.mVal} istyle={minStyle} />
+<HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={state.sVal} istyle={secStyle} />
 </div>);
+//ClockFace>);
   }
 
   //=== animation loop
@@ -170,9 +172,9 @@ class Clock extends React.Component {
 
   resizeClock() {
       const th = this;
-      let elm = ReactDOM.findDOMNode(th).parent;
-      let size = Math.min(elm.offsetWidth, elm.offsetHeight);
-      console.log("resizeClock: " + size)
+      let elm = ReactDOM.findDOMNode(th);
+      let size = Math.min(window.width, window.height);
+      //console.log("resizeClock: " + size)
       th.setState({
         cw: size,
         ch: size

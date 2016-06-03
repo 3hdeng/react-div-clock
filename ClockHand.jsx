@@ -12,21 +12,21 @@ const ClockHand = React.createClass({
     angle: types.number,
     width: types.number,
     height: types.number,
-    style: types.object
+    istyle: types.object
   },
   getDefaultProps() {
     return {
       angle: 0,
       width: 4,
       height: 100,
-      style: {}
+      istyle: {}
     }
   },
   render() {
     const props = this.props;
 
     let pstyle = {};
-    if (props.style) pstyle = props.style;
+    if (props.istyle) pstyle = props.istyle;
 
     let angle = props.angle,
       height = props.height,
