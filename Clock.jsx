@@ -47,18 +47,18 @@ class Clock extends React.Component {
     };
     // external props will override the defaultProps?
     super(props);
+   
     if(!props.istyle) props.istyle=Clock.defaultProps.istyle;
     
     //if (!props.istyle.position) props.istyle.position = Clock.defaultProps.istyle.position;
-    console.log(props.istyle.hSize);
+
 
     if (!props.istyle.hSize) props.istyle.hSize = {w:props.cw/20, h:(props.ch/2)*0.65};
     if (!props.istyle.mSize) props.istyle.mSize = {w:props.cw/30, h:(props.ch/2)*0.75};
     if (!props.istyle.sSize) props.istyle.sSize = {w:props.cw/40, h:(props.ch/2)*0.85};
     
     
-    console.log(props.istyle);
-    
+
     //=== initial state
     this.state = {
       cw: props.cw,
@@ -71,6 +71,7 @@ class Clock extends React.Component {
 
   getStyles() {
     const props = this.props;
+    const state= this.state;
   
     let pstyle = {};
     if (props.istyle) {
@@ -78,15 +79,15 @@ class Clock extends React.Component {
     }
  
  
-    pstyle.cw = props.cw;
-    pstyle.ch = props.ch;
+    pstyle.cw = state.cw;
+    pstyle.ch = state.ch;
 
     return pstyle;
   }
 
   render() {
     const pstyle = this.getStyles();
-    const pstate = this.state;
+    const state = this.state;
 
     const divstyle = {
       width: `${pstyle.cw}px`,
@@ -113,8 +114,7 @@ class Clock extends React.Component {
       backgroundColor: pstyle.hmsColor.s
     }, cstyle);
 
-    //console.log(pstyle.mSize);
-    // console.log(pstyle.sSize);
+
      
     const hw = pstyle.hSize.w,
       hh = pstyle.hSize.h;
@@ -126,9 +126,9 @@ class Clock extends React.Component {
 
 
     return (<div style={divstyle}>
-<HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={pstate.hVal} style={hourStyle} />
-<HmsHand width={mw} height={mh} hmsKind='min' hmsValue={pstate.mVal} style={minStyle} />
-<HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={pstate.sVal} style={secStyle} />
+<HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={state.hVal} style={hourStyle} />
+<HmsHand width={mw} height={mh} hmsKind='min' hmsValue={state.mVal} style={minStyle} />
+<HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={state.sVal} style={secStyle} />
 </div>);
   }
 
@@ -170,8 +170,9 @@ class Clock extends React.Component {
 
   resizeClock() {
       const th = this;
-      let elm = ReactDOM.findDOMNode(th);
+      let elm = ReactDOM.findDOMNode(th).parent;
       let size = Math.min(elm.offsetWidth, elm.offsetHeight);
+      console.log("resizeClock: " + size)
       th.setState({
         cw: size,
         ch: size
