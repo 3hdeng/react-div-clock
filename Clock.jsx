@@ -30,6 +30,7 @@ class Clock extends React.Component {
           m: 'cyan',
           s: 'red'
         },
+        fontSize: 20,
         backgroundColor: 'white',
         hSize: {
           w: 40,
@@ -53,11 +54,11 @@ class Clock extends React.Component {
     //if (!props.istyle.position) props.istyle.position = Clock.defaultProps.istyle.position;
 
 
-    if (!props.istyle.hSize) props.istyle.hSize = {w:props.cw/20, h:(props.ch/2)*0.65};
+    if (!props.istyle.hSize) props.istyle.hSize = {w:props.cw/25, h:(props.ch/2)*0.65};
     if (!props.istyle.mSize) props.istyle.mSize = {w:props.cw/30, h:(props.ch/2)*0.75};
     if (!props.istyle.sSize) props.istyle.sSize = {w:props.cw/40, h:(props.ch/2)*0.85};
     
-    
+    if (!props.istyle.fontSize) props.istyle.fontSize = 20;
 
     //=== initial state
     this.state = {
@@ -92,11 +93,13 @@ class Clock extends React.Component {
     const divstyle = {
       width: `${pstyle.cw}px`,
       height: `${pstyle.ch}px`,
-      backgroundColor: pstyle.backgroundColor,
       display:'block',
-      position:'absolute', 
-      borderRadius:`${pstyle.cw/2}px`
+      position:'absolute'
     };
+     //backgroundColor: pstyle.backgroundColor,
+     //position:'absolute', 
+    //  borderRadius:`${pstyle.cw/2}px`
+    
     
     const cstyle = {
       cw: pstyle.cw,
@@ -123,15 +126,14 @@ class Clock extends React.Component {
     const sw = pstyle.sSize.w,
       sh = pstyle.sSize.h;
 
+  const facestyle={backgroundColor:pstyle.backgroundColor, fontSize:pstyle.fontSize};
 
-
-    //return (<ClockFace cw={pstyle.cw} ch={pstyle.ch} istyle={{backgroundColor:'red'}}>
-     return (<div style={divstyle}>
+    return (<div style={divstyle}>
+      <ClockFace cw={pstyle.cw} ch={pstyle.ch} istyle={facestyle} />
 <HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={state.hVal} istyle={hourStyle} />
 <HmsHand width={mw} height={mh} hmsKind='min' hmsValue={state.mVal} istyle={minStyle} />
 <HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={state.sVal} istyle={secStyle} />
 </div>);
-//ClockFace>);
   }
 
   //=== animation loop
@@ -171,14 +173,14 @@ class Clock extends React.Component {
   // resize clock when div size changed
 
   resizeClock() {
-      const th = this;
-      let elm = ReactDOM.findDOMNode(th);
-      let size = Math.min(window.width, window.height);
+      //const th = this;
+      //let elm = ReactDOM.findDOMNode(th);
+      //let size = Math.min(window.width, window.height);
       //console.log("resizeClock: " + size)
-      th.setState({
+      /*th.setState({
         cw: size,
         ch: size
-      })
+      })*/
     }
     //===
 

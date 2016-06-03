@@ -1,0 +1,1 @@
+module.exports.calCosSin = require('./utils/calCosSin');

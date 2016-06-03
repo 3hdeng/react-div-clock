@@ -57,6 +57,7 @@ class HmsHand extends React.Component {
       pstyle = props.istyle;
     }
 
+  
     if (!pstyle.left) pstyle.left = (pstyle.cw - w) / 2;
     if (!pstyle.bottom) pstyle.bottom = pstyle.ch / 2;
 
@@ -68,7 +69,6 @@ class HmsHand extends React.Component {
   }
   render() {
     let pstyle = this.getStyles();
-    console.log(pstyle);
     return (<ClockHand width={pstyle.w} height={pstyle.h} angle={pstyle.angle} istyle={pstyle} />);
   }
 
