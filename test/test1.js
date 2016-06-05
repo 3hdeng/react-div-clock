@@ -17,7 +17,9 @@ describe('myutil test', function() {
   it('CosSinTable60 result', function() {
     let arr=myutil.CosSinTable60;
     console.log(arr);
-    expect(arr[0]).to.equal({cos:0.0, sin:-1.0});
+    expect(arr[0].sin).to.equal(-1.0);
+    expect( Math.abs(arr[0].cos) <1.0e-10 );
+    
     });
   
 });
