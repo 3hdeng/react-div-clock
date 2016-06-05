@@ -40,6 +40,7 @@ class HmsHand extends React.Component {
       hmsValue = props.hmsValue,
       a = 0;
 
+   
     switch (props.hmsKind) {
       case 'hour':
         a = (hmsValue % 12) * 360 / 12;
@@ -48,6 +49,7 @@ class HmsHand extends React.Component {
       case 'sec':
       case 'tick':  
         a = (hmsValue % 60) * 360 / 60;
+        
         break;
     }
 
@@ -65,7 +67,9 @@ class HmsHand extends React.Component {
     pstyle.w = w;
     pstyle.h = h;
     pstyle.angle = a;
-
+    //if(props.hmsKind == 'tick') 
+    //   console.log("tckValue=" + props.hmsValue + "angle=" + a);
+       
     return pstyle;
   }
   render() {

@@ -10,14 +10,16 @@ const ClockLabel = React.createClass({
     x: types.number,
     y: types.number,
     fontSize: types.number,
-    label: types.string
+    label: types.string,
+    labelColor: types.string
   },
   getDefaultProps() {
     return {
       x: 0,
       y: 0,
       fontSize: 15,
-      label: 'LL'
+      label: 'LL', 
+      labelColor:'white'
     }
   },
   render() {
@@ -25,7 +27,7 @@ const ClockLabel = React.createClass({
     const props = th.props;
 
     let {
-      x, y, label, fontSize
+      x, y, label, fontSize, labelColor
     } = props;
 
 
@@ -34,7 +36,7 @@ const ClockLabel = React.createClass({
       position: 'absolute',
       transform: `translate(${x}px, ${y}px)`,
       fontSize: `${fontSize}px`,
-      color: 'orange', 
+      color: labelColor, 
       display:'inline-block'
     };
 

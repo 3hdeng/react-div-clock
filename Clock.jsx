@@ -13,7 +13,7 @@ class Clock extends React.Component {
   //=== set up your own state property in the constructor.
 
   constructor(props) {
-   
+
     //===
     Clock.propTypes = {
       cw: PropTypes.number.isRequired,
@@ -32,6 +32,7 @@ class Clock extends React.Component {
         },
         fontSize: 20,
         backgroundColor: 'white',
+        labelColor: 'orange',
         hSize: {
           w: 40,
           h: 90
@@ -48,18 +49,30 @@ class Clock extends React.Component {
     };
     // external props will override the defaultProps?
     super(props);
-   
-    if(!props.istyle) props.istyle=Clock.defaultProps.istyle;
-    
+
+    if (!props.istyle) props.istyle = Clock.defaultProps.istyle;
+
     //if (!props.istyle.position) props.istyle.position = Clock.defaultProps.istyle.position;
 
 
-    if (!props.istyle.hSize) props.istyle.hSize = {w:props.cw/25, h:(props.ch/2)*0.65};
-    if (!props.istyle.mSize) props.istyle.mSize = {w:props.cw/30, h:(props.ch/2)*0.75};
-    if (!props.istyle.sSize) props.istyle.sSize = {w:props.cw/40, h:(props.ch/2)*0.85};
-    
-    if (!props.istyle.fontSize) props.istyle.fontSize = 20;
+    if (!props.istyle.hSize) props.istyle.hSize = {
+      w: props.cw / 20,
+      h: (props.ch / 2) * 0.65
+    };
+    if (!props.istyle.mSize) props.istyle.mSize = {
+      w: props.cw / 30,
+      h: (props.ch / 2) * 0.75
+    };
+    if (!props.istyle.sSize) props.istyle.sSize = {
+      w: props.cw / 40,
+      h: (props.ch / 2) * 0.85
+    };
 
+    if (!props.istyle.fontSize) props.istyle.fontSize = 20;
+    if (!props.istyle.backgroundColor) props.istyle.backgroundColor = 'cyan';
+    if (!props.istyle.labelColor) props.istyle.labelColor = 'orange';
+    
+    
     //=== initial state
     this.state = {
       cw: props.cw,
@@ -72,14 +85,14 @@ class Clock extends React.Component {
 
   getStyles() {
     const props = this.props;
-    const state= this.state;
-  
+    const state = this.state;
+
     let pstyle = {};
     if (props.istyle) {
       pstyle = props.istyle;
     }
- 
- 
+
+
     pstyle.cw = state.cw;
     pstyle.ch = state.ch;
 
@@ -93,14 +106,14 @@ class Clock extends React.Component {
     const divstyle = {
       width: `${pstyle.cw}px`,
       height: `${pstyle.ch}px`,
-      display:'block',
-      position:'absolute'
+      display: 'block',
+      position: 'absolute'
     };
-     //backgroundColor: pstyle.backgroundColor,
-     //position:'absolute', 
+    //backgroundColor: pstyle.backgroundColor,
+    //position:'absolute', 
     //  borderRadius:`${pstyle.cw/2}px`
-    
-    
+
+
     const cstyle = {
       cw: pstyle.cw,
       ch: pstyle.ch
@@ -118,7 +131,7 @@ class Clock extends React.Component {
     }, cstyle);
 
 
-     
+
     const hw = pstyle.hSize.w,
       hh = pstyle.hSize.h;
     const mw = pstyle.mSize.w,
@@ -126,10 +139,15 @@ class Clock extends React.Component {
     const sw = pstyle.sSize.w,
       sh = pstyle.sSize.h;
 
-  const facestyle={backgroundColor:pstyle.backgroundColor, fontSize:pstyle.fontSize};
+    const facestyle = {
+      backgroundColor: pstyle.backgroundColor,
+      fontSize: pstyle.fontSize,
+      labelColor: pstyle.labelColor
+    };
+    const labels = 'XII,I,II,III,IV,V,VI,VII,VIII,IX,X,XI'.split(',');
 
     return (<div style={divstyle}>
-      <ClockFace cw={pstyle.cw} ch={pstyle.ch} istyle={facestyle} />
+      <ClockFace cw={pstyle.cw} ch={pstyle.ch}  labels={labels} istyle={facestyle} />
 <HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={state.hVal} istyle={hourStyle} />
 <HmsHand width={mw} height={mh} hmsKind='min' hmsValue={state.mVal} istyle={minStyle} />
 <HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={state.sVal} istyle={secStyle} />

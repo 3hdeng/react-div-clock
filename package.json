@@ -5,7 +5,8 @@
   "scripts": {
     "babel": "babel *.jsx -d dist",
     "wpk": "webpack",
-    "dev": "webpack-dev-server --progress --colors --port 8080"
+    "dev": "webpack-dev-server --progress --colors --port 8080",
+    "test": "mocha --compilers js:babel-core/register ./test/*"
   },
   "keywords": [
     "React",
@@ -25,6 +26,7 @@
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.3.0",
     "babel-preset-react": "^6.5.0",
+    "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "react": "^15.0.2",
     "react-css-modules": "^3.7.6",

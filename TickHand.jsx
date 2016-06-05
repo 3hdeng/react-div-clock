@@ -2,19 +2,18 @@ import React, {
   PropTypes as types
 }
 from 'react'
-import ClockHand from './ClockHand'
+import HmsHand from './HmsHand'
+import myutil from './myutil';
 
-
-class HmsHand extends React.Component {
+class TickHand extends React.Component {
 
   constructor(props) {
     super(props);
 
-    HmsHand.defaultProps = {
-      hmsKind: 'hour',
-      hmsValue: 0,
+    TickHand.defaultProps = {
+      tickValue: 0,
       width: 4,
-      height: 120,
+      height: 15,
       istyle: {
         cw: 300,
         ch: 300,
@@ -24,9 +23,8 @@ class HmsHand extends React.Component {
       }
     };
 
-    HmsHand.propTypes = {
-      hmsKind: types.string.isRequired,
-      hmsValue: types.number,
+    TickHand.propTypes = {
+      tickValue: types.number,
       width: types.number,
       height: types.number,
       istyle: types.object
@@ -37,21 +35,21 @@ class HmsHand extends React.Component {
     const props = this.props;
     let w = props.width,
       h = props.height,
-      hmsValue = props.hmsValue,
-      a = 0;
+      tickValue = props.tickValue;
+     
 
-    switch (props.hmsKind) {
-      case 'hour':
-        a = (hmsValue % 12) * 360 / 12;
-        break;
-      case 'min':
-      case 'sec':
-        a = (hmsValue % 60) * 360 / 60;
-        break;
+    if(tickValue%15 == 0){
+           w=2*w;
+           h=2*h;
+    }else if(tickValue%5 == 0){
+      w=1.5*w;
+      h=1.5*h;
     }
-
-
-
+    
+    //console.log("tickWH=" + w + "," + h);
+    
+    
+    
     let pstyle = {};
     if (props.istyle) {
       pstyle = props.istyle;
@@ -63,17 +61,23 @@ class HmsHand extends React.Component {
 
     pstyle.w = w;
     pstyle.h = h;
-    pstyle.angle = a;
-
+    const cs=myutil.CosSinTable60[tickValue];
+    const r = Math.min(pstyle.cw, pstyle.ch) /2 -h-3;
+    const x = r * cs.cos;
+    const y = r * cs.sin;
+    pstyle.transform=`translate(${x}px, ${y}px)`;
     return pstyle;
   }
+  
   render() {
     let pstyle = this.getStyles();
-    return (<ClockHand width={pstyle.w} height={pstyle.h} angle={pstyle.angle} istyle={pstyle} />);
+    const props = this.props;
+    //console.log("tickValue in TickHand.jsx: " + props.tickValue);
+    return(<HmsHand width={pstyle.w} height={pstyle.h} hmsKind='tick' hmsValue={props.tickValue} istyle={pstyle} />);
   }
 
 
 }
 
 
-export default HmsHand
+export default TickHand

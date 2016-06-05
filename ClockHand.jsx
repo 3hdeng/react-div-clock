@@ -35,15 +35,21 @@ const ClockHand = React.createClass({
     let ostyle = {
       transformOrigin: 'bottom',
       position: 'absolute',
-      transform: `rotate(${angle}deg)`,
+      display:'block',
       width: `${width}px`,
       height: `${height}px`,
       borderRadius: '10px',
       border: '1px',
-      borderColor: 'white'
+      borderColor: 'white',
+      transform: `rotate(${angle}deg)`
     };
-    // <div style={ {width: `${width}px`, height: `${height}px` }}  ></div>
-    return (<div style={ Object.assign(pstyle, ostyle ) } ></div>);
+   
+    Object.assign(ostyle, pstyle );
+    if(pstyle.transform) 
+      ostyle.transform=  pstyle.transform + ' ' + `rotate(${angle}deg)`;
+   
+    
+    return (<div style={ostyle } ></div>);
   }
 })
 
