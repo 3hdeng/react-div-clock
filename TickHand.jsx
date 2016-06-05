@@ -46,7 +46,6 @@ class HmsHand extends React.Component {
         break;
       case 'min':
       case 'sec':
-      case 'tick':  
         a = (hmsValue % 60) * 360 / 60;
         break;
     }

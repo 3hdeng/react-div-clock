@@ -10,14 +10,7 @@ import ClockLabel from './ClockLabel';
 //xxx const myutil=require('./myutil.js');
 import myutil from './myutil.js';
 
-function myStatics() {
 
-}
-myStatics.Arr12 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-myStatics.CosSinTable = myStatics.Arr12.map(function(v, i, arr) {
-  return myutil.calCosSin(v * 30 - 90);
-  //return {cos:0.5*v, sin:0.5};
-});
 
 const ClockFace = React.createClass({
   statics: {
@@ -62,8 +55,8 @@ const ClockFace = React.createClass({
   getLabels(cw, ch, labels, fontSize) {
     let rlabels = labels.map((label, i, labels) => {
       const r = Math.min(cw, ch) * 0.9/2;
-      const x = r * myStatics.CosSinTable[i].cos + cw / 2 - fontSize/2;
-      const y = r * myStatics.CosSinTable[i].sin + ch / 2 - fontSize/2;
+      const x = r * myutil.CosSinTable[i].cos + cw / 2 - fontSize/2;
+      const y = r * myutil.CosSinTable[i].sin + ch / 2 - fontSize/2;
 
       return (
         <ClockLabel key={ `clock-label-` + i }
