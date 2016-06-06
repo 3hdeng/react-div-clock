@@ -4,7 +4,7 @@ install:
    - npm install
  
 before_script:
-  - npm run moocha
+  - npm run mocha
   - node test/chai_version.js
   - sleep 5 # give gulp background task some time to execute.
   
