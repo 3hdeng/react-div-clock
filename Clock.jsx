@@ -107,7 +107,10 @@ class Clock extends React.Component {
       width: `${pstyle.cw}px`,
       height: `${pstyle.ch}px`,
       display: 'block',
-      position: 'absolute'
+      position: 'absolute', 
+      border:'0px',
+      padding:'0px',
+      margin:'0px'
     };
     //backgroundColor: pstyle.backgroundColor,
     //position:'absolute', 
@@ -146,12 +149,13 @@ class Clock extends React.Component {
     };
     const labels = 'XII,I,II,III,IV,V,VI,VII,VIII,IX,X,XI'.split(',');
 
-    return (<div style={divstyle}>
-      <ClockFace cw={pstyle.cw} ch={pstyle.ch}  labels={labels} istyle={facestyle} />
+//<div style={divstyle}>
+    return (
+      <ClockFace cw={pstyle.cw} ch={pstyle.ch}  labels={labels} istyle={facestyle} >
 <HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={state.hVal} istyle={hourStyle} />
 <HmsHand width={mw} height={mh} hmsKind='min' hmsValue={state.mVal} istyle={minStyle} />
 <HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={state.sVal} istyle={secStyle} />
-</div>);
+</ClockFace>);
   }
 
   //=== animation loop

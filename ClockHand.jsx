@@ -39,7 +39,7 @@ const ClockHand = React.createClass({
       width: `${width}px`,
       height: `${height}px`,
       borderRadius: '10px',
-      border: '1px',
+      border: '0px',
       borderColor: 'white',
       transform: `rotate(${angle}deg)`
     };

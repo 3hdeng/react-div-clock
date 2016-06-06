@@ -62,7 +62,7 @@ class TickHand extends React.Component {
     pstyle.w = w;
     pstyle.h = h;
     const cs=myutil.CosSinTable60[tickValue];
-    const r = Math.min(pstyle.cw, pstyle.ch) /2 -h-3;
+    const r = Math.min(pstyle.cw, pstyle.ch) /2 -h-2;
     const x = r * cs.cos;
     const y = r * cs.sin;
     pstyle.transform=`translate(${x}px, ${y}px)`;

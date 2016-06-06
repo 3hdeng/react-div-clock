@@ -95,7 +95,7 @@ const ClockFace = React.createClass({
       position:'absolute',
       left: '0px',
       top:'0px', 
-      border:'0px',
+      border:`10px solid ${pstyle.labelColor}`,
       margin:'0px',
       padding:'0px'
     };
@@ -111,6 +111,7 @@ const ClockFace = React.createClass({
       <div  style={divstyle}>
       {labels_render}
       {ticks_render}
+      {props.children}
       </div>
     )
   }
