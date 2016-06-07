@@ -17,6 +17,6 @@ deploy:
   api_key:
     secure: TYe2cj0uRa34idG12faTcR/a/ey5U8YmFYWwoPZD1yagiTvkG1GYu0emXyuACiYBUsG3SGwhi1RVv7u2kHr7GzpZQFNXyLaAbonI8AU+AySp+LIVIJrm+GZNt6G4uEYnmAldtACPM0xFz6nMX4SINwVDIWHM2ZgMAqT7C5FuZ5z/7scvVcAvbiz+7DpRiI7IgTRNIMBRWjKjJyvlhVpHfOQTkOZdU597J+RkcXRm9UuSTUOOcfCESxt8KmRqhmvhg9O5+QoSEIfc3Eyct/o/Vy/RrhN8d4ESczTV/OHUH75cku6QTgVosN1gsy35qaPAxlRodq8sJdNpNzdXj47d1QZnnLQ3A8lLtN4eAV17S6Ymd+MoyU+UmAeZLG0BluF09wYvIaY5IwS4jQLChLjKwZ0yLwGjnLfUYoYI2cZlA5sTEcw1O89tay1PbXa6itHGIVK+1S8p3NFeJhltmjlCDcqsSIFDgXpq0qwpWRKOY6c4ojVFdPJ6KHvsRzcvqLJpNgvjsLB6Sm/pIa6DePkHa8SiBaf+NYdJftR1tm3SnRWFL02B1qxvHcdD84L+DBYdXYvPJHiAoxE3Ft7RebNH4/q2/JbhCmTeTehdYok7D/kFx5tJQTTYJftSBKFzArXf9HcwmPFZY/HOU/V6DHfe9lpL0qhD39V1RQW6Am6/arA=
   file: none
+  skip_cleanup: true
   on:
-    repo: 3hdeng/react-div-clock
     tags: true
