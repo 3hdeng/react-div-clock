@@ -43,12 +43,14 @@ class HmsHand extends React.Component {
    
     switch (props.hmsKind) {
       case 'hour':
-        a = (hmsValue % 12) * 360 / 12;
+        a = (hmsValue.hour % 12) * 30 + (hmsValue.min%60)*0.5;	
         break;
       case 'min':
+	 a = (hmsValue.min % 60) * 6 + (hmsValue.sec%60)*0.1;
+	 break;
       case 'sec':
       case 'tick':  
-        a = (hmsValue % 60) * 360 / 60;
+        a = (hmsValue.sec % 60) * 6;
         
         break;
     }

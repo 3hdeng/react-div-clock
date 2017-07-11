@@ -77,9 +77,10 @@ class Clock extends React.Component {
     this.state = {
       cw: props.cw,
       ch: props.ch,
-      hVal: 0,
-      mVal: 0,
-      sVal: 0
+//      hVal: 0,
+//      mVal: 0,
+//      sVal: 0
+      hmsVal:{hour:0, min:0, sec:0}      
     };
   }
 
@@ -152,9 +153,9 @@ class Clock extends React.Component {
 //<div style={divstyle}>
     return (
       <ClockFace cw={pstyle.cw} ch={pstyle.ch}  labels={labels} istyle={facestyle} >
-<HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={state.hVal} istyle={hourStyle} />
-<HmsHand width={mw} height={mh} hmsKind='min' hmsValue={state.mVal} istyle={minStyle} />
-<HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={state.sVal} istyle={secStyle} />
+<HmsHand width={hw} height={hh} hmsKind='hour' hmsValue={state.hmsVal} istyle={hourStyle} />
+<HmsHand width={mw} height={mh} hmsKind='min' hmsValue={state.hmsVal} istyle={minStyle} />
+<HmsHand width={sw} height={sh} hmsKind='sec' hmsValue={state.hmsVal} istyle={secStyle} />
 </ClockFace>);
   }
 
@@ -173,9 +174,11 @@ class Clock extends React.Component {
       }
       let now = new Date()
       th.setState({
-        hVal: now.getHours(),
-        mVal: now.getMinutes(),
-        sVal: now.getSeconds()
+	      hmsVal:{
+		      hour: now.getHours(),
+		      min: now.getMinutes(),
+		      sec: now.getSeconds()
+	      }
       })
       window.requestAnimationFrame(_loop)
     }

@@ -73,7 +73,8 @@ class TickHand extends React.Component {
     let pstyle = this.getStyles();
     const props = this.props;
     //console.log("tickValue in TickHand.jsx: " + props.tickValue);
-    return(<HmsHand width={pstyle.w} height={pstyle.h} hmsKind='tick' hmsValue={props.tickValue} istyle={pstyle} />);
+    return(<HmsHand width={pstyle.w} height={pstyle.h} hmsKind='tick'
+		    hmsValue={{hour:0,min:0, sec:props.tickValue}} istyle={pstyle} />);
   }
 
 
